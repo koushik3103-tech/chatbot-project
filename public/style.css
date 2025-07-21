@@ -1,0 +1,150 @@
+/* 🌐 General Layout */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #f0f0f0;
+}
+
+/* 🌙 Dark Mode Styles */
+body.dark {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+body.dark .chat-container {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+}
+
+body.dark .chat-box {
+  background-color: #1e1e1e;
+}
+
+body.dark .input-area {
+  background-color: #2a2a2a;
+}
+
+body.dark .input-area input {
+  background-color: #3a3a3a;
+  color: #fff;
+  border: none;
+}
+
+body.dark .input-area button {
+  background-color: #555;
+  color: #fff;
+}
+
+body.dark .message .text {
+  background-color: #2e2e2e;
+  color: #fff;
+}
+
+/* 🌙 Toggle Button */
+#theme-toggle {
+  padding: 10px 15px;
+  margin: 10px auto;
+  border: none;
+  background: #333;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* 🧾 Chat Container */
+.chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  margin: auto;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+/* 💬 Chat Box */
+.chat-box {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  background: #fafafa;
+}
+
+.message {
+  margin: 10px 0;
+}
+
+.message.user {
+  text-align: right;
+}
+
+.message.bot {
+  text-align: left;
+}
+
+.message .text {
+  display: inline-block;
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 80%;
+  background-color: #e0e0e0;
+}
+
+/* 🧾 Input Area */
+.input-area {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  background-color: #eee;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.input-area button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  background: #4CAF50;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 600px) {
+  .chat-container {
+    border-radius: 0;
+    border: none;
+    height: 100vh;
+  }
+
+  #theme-toggle {
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .input-area button {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .input-area input {
+    font-size: 14px;
+  }
+
+  .message .text {
+    font-size: 14px;
+  }
+}
