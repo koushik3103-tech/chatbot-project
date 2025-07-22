@@ -5,13 +5,13 @@
   padding: 0;
 }
 
-body {
+html, body {
+  height: 100vh;
+  overflow: hidden;
   font-family: 'Segoe UI', sans-serif;
   background: #f0f0f0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -43,20 +43,21 @@ h1 {
   background: #555;
 }
 
-/* 💬 Chat Layout */
+/* 💬 Chat Container */
 .chat-container {
-  flex: 1;
   display: flex;
   flex-direction: column;
   width: 90vw;
   max-width: 800px;
-  height: 80vh;
+  height: 100vh;
+  max-height: 100vh;
+  margin: 0 auto;
+  background: #fff;
   border: 1px solid #ccc;
   border-radius: 10px;
-  background: #fff;
   overflow: hidden;
-  margin-bottom: 20px;
   box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  flex-grow: 1;
   transition: background 0.3s;
 }
 
@@ -65,6 +66,7 @@ body.dark .chat-container {
   border-color: #333;
 }
 
+/* 💬 Chat Box */
 .chat-box {
   flex: 1;
   padding: 20px;
@@ -108,61 +110,86 @@ body.dark .bot {
   color: #fff;
 }
 
-/* Typing Animation */
+/* ⏳ Typing Animation */
 .typing {
   font-style: italic;
   opacity: 0.6;
 }
 
-/* 📝 Input Section */
+/* 📝 Input Fixed to Bottom */
 .input-container {
   display: flex;
-  padding: 15px;
+  position: sticky;
+  bottom: 0;
   background: #eee;
+  padding: 15px;
+  border-top: 1px solid #ccc;
 }
 
 body.dark .input-container {
   background: #2a2a2a;
+  border-color: #444;
 }
 
+/* 📝 Input Styling */
 .input-container input {
   flex: 1;
   padding: 12px;
+  font-size: 1rem;
   border-radius: 8px;
   border: none;
-  font-size: 1rem;
 }
 
 .input-container button {
   margin-left: 10px;
   padding: 12px 20px;
+  font-size: 1rem;
   background: #4CAF50;
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 1rem;
 }
 
-/* Animations */
+/* ✨ Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive Mobile */
+/* 📱 Mobile Responsiveness */
 @media (max-width: 600px) {
   .chat-container {
     width: 100vw;
     height: 100vh;
     border-radius: 0;
+    margin: 0;
   }
 
   .chat-box {
     font-size: 0.9rem;
+    padding: 15px;
   }
 
-  .input-container input, .input-container button {
+  .input-container input,
+  .input-container button {
     font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin: 15px;
+  }
+}
+
+/* 🖥️ Large Screens */
+@media (min-width: 1200px) {
+  .chat-container {
+    max-width: 1000px;
+  }
+
+  .chat-box {
+    font-size: 1.1rem;
   }
 }
