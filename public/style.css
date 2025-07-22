@@ -1,150 +1,168 @@
-/* 🌐 General Layout */
-body {
+/* 🌐 Base Reset */
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  background: #f0f0f0;
 }
 
-/* 🌙 Dark Mode Styles */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* 🌙 Dark Mode */
 body.dark {
   background-color: #121212;
   color: #f0f0f0;
 }
 
-body.dark .chat-container {
-  background-color: #1e1e1e;
-  border: 1px solid #333;
+h1 {
+  margin: 20px;
+  font-size: 2rem;
+  text-align: center;
 }
 
-body.dark .chat-box {
-  background-color: #1e1e1e;
-}
-
-body.dark .input-area {
-  background-color: #2a2a2a;
-}
-
-body.dark .input-area input {
-  background-color: #3a3a3a;
-  color: #fff;
-  border: none;
-}
-
-body.dark .input-area button {
-  background-color: #555;
-  color: #fff;
-}
-
-body.dark .message .text {
-  background-color: #2e2e2e;
-  color: #fff;
-}
-
-/* 🌙 Toggle Button */
+/* 🌙 Theme Toggle */
 #theme-toggle {
   padding: 10px 15px;
-  margin: 10px auto;
+  margin: 10px;
   border: none;
   background: #333;
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
+  transition: background 0.3s;
 }
 
-/* 🧾 Chat Container */
+#theme-toggle:hover {
+  background: #555;
+}
+
+/* 💬 Chat Layout */
 .chat-container {
   flex: 1;
   display: flex;
   flex-direction: column;
+  width: 90vw;
   max-width: 800px;
-  margin: auto;
-  width: 100%;
+  height: 80vh;
   border: 1px solid #ccc;
   border-radius: 10px;
+  background: #fff;
   overflow: hidden;
-  background-color: #fff;
+  margin-bottom: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  transition: background 0.3s;
 }
 
-/* 💬 Chat Box */
+body.dark .chat-container {
+  background: #1e1e1e;
+  border-color: #333;
+}
+
 .chat-box {
   flex: 1;
-  padding: 15px;
+  padding: 20px;
   overflow-y: auto;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   background: #fafafa;
+  transition: background 0.3s;
 }
 
+body.dark .chat-box {
+  background: #1e1e1e;
+}
+
+/* 💬 Message Bubbles */
 .message {
-  margin: 10px 0;
+  max-width: 70%;
+  padding: 12px;
+  border-radius: 12px;
+  animation: fadeIn 0.3s ease;
 }
 
-.message.user {
+.user {
+  background: #4CAF50;
+  color: #fff;
+  align-self: flex-end;
   text-align: right;
 }
 
-.message.bot {
+.bot {
+  background: #e0e0e0;
+  color: #000;
+  align-self: flex-start;
   text-align: left;
 }
 
-.message .text {
-  display: inline-block;
-  padding: 10px;
-  border-radius: 8px;
-  max-width: 80%;
-  background-color: #e0e0e0;
+body.dark .bot {
+  background: #2a2a2a;
+  color: #fff;
 }
 
-/* 🧾 Input Area */
-.input-area {
+/* Typing Animation */
+.typing {
+  font-style: italic;
+  opacity: 0.6;
+}
+
+/* 📝 Input Section */
+.input-container {
   display: flex;
-  padding: 10px;
-  border-top: 1px solid #ccc;
-  background-color: #eee;
+  padding: 15px;
+  background: #eee;
 }
 
-.input-area input {
+body.dark .input-container {
+  background: #2a2a2a;
+}
+
+.input-container input {
   flex: 1;
-  padding: 10px;
+  padding: 12px;
+  border-radius: 8px;
   border: none;
-  border-radius: 5px;
+  font-size: 1rem;
 }
 
-.input-area button {
+.input-container button {
   margin-left: 10px;
-  padding: 10px 20px;
+  padding: 12px 20px;
   background: #4CAF50;
-  border: none;
-  border-radius: 5px;
   color: white;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
+  font-size: 1rem;
 }
 
-/* 📱 Responsive Design */
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Mobile */
 @media (max-width: 600px) {
   .chat-container {
-    border-radius: 0;
-    border: none;
+    width: 100vw;
     height: 100vh;
-  }
-
-  #theme-toggle {
-    width: 100%;
     border-radius: 0;
   }
 
-  .input-area button {
-    padding: 10px;
-    font-size: 14px;
+  .chat-box {
+    font-size: 0.9rem;
   }
 
-  .input-area input {
-    font-size: 14px;
-  }
-
-  .message .text {
-    font-size: 14px;
+  .input-container input, .input-container button {
+    font-size: 0.9rem;
   }
 }
