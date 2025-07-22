@@ -2,30 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>AI Kutty Chat</title>
+  <title>KoushikGPT AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+  <h1>Welcome to Kutty 🤖</h1>
   <button id="theme-toggle">🌓 Toggle Dark Mode</button>
-
-  <h1>Welcome to Kutty - Your AI Assistant</h1>
-  <select id="personality-select">
-  <option value="friendly">Friendly</option>
-  <option value="sarcastic">Sarcastic</option>
-  <option value="motivational">Motivational</option>
-  <option value="funny">Funny</option>
-</select>
-
-  <div class="chat-container">
+  <div class="selectors">
+    <select id="language-select">
+      <option value="english">English</option>
+      <option value="tamil">தமிழ்</option>
+    </select>
+    <select id="personality-select">
+      <option value="friendly">Friendly</option>
+      <option value="sarcastic">Sarcastic</option>
+      <option value="motivational">Motivational</option>
+      <option value="funny">Funny</option>
+    </select>
+  </div>
+  <div id="username-container">
+    <input type="text" id="username" placeholder="Enter your name..." />
+    <button id="start-btn">Start Chat</button>
+  </div>
+  <div class="chat-container" style="display:none;">
     <div id="chat-box" class="chat-box"></div>
     <div class="input-container">
-      <input id="user-input" type="text" placeholder="Ask me anything...">
+      <input id="user-input" type="text" placeholder="Ask me anything..." />
       <button id="send-btn">Send</button>
     </div>
   </div>
-
   <script src="script.js"></script>
 </body>
 </html>
-

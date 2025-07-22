@@ -6,36 +6,34 @@ const axios = require('axios');
 const app = express();
 const PORT = 31;
 
-// ✅ Middleware Setup
-app.use(bodyParser.json());
+// ✅ Middlewares
 app.use(cors());
+app.use(bodyParser.json());
 app.use(express.static('public'));
 
-// ✅ Cohere API Key (Secure this in env in production!)
-const COHERE_API_KEY = '4tpxHwuXCDfwA2SOX0pFaWLcCSbZEIuSFfsjhb3I';
+// ✅ Your Cohere API Key
+const COHERE_API_KEY = '4tpxHwuXCDfwA2SOX0pFaWLcCSbZEIuSFfsjhb3I';  // ⚠️ Move this to .env in production
 
-// ✅ Personality Chat Endpoint
+// ✅ Personality-Aware Endpoint
 app.post('/ask', async (req, res) => {
   const { message, personality } = req.body;
 
-  // ✅ Personalization Logic
-  let personalityInstruction = '';
+  let instruction = '';
   switch (personality) {
     case 'sarcastic':
-      personalityInstruction = "Respond in a sarcastic and witty tone.";
+      instruction = "Respond in a sarcastic, witty tone.";
       break;
     case 'motivational':
-      personalityInstruction = "Respond like a motivational coach, very encouraging and uplifting.";
+      instruction = "Respond like a motivational coach with uplifting vibes.";
       break;
     case 'funny':
-      personalityInstruction = "Respond humorously with jokes and light-hearted comments.";
+      instruction = "Respond humorously with jokes and casual tone.";
       break;
     default:
-      personalityInstruction = "Respond in a friendly, helpful, and easy-to-understand way.";
+      instruction = "Respond in a friendly, helpful way.";
   }
 
-  // ✅ Full prompt with personality included
-  const fullPrompt = `${personalityInstruction} ${message}`;
+  const fullPrompt = `${instruction} ${message}`;
 
   try {
     const response = await axios.post(
@@ -47,21 +45,18 @@ app.post('/ask', async (req, res) => {
       },
       {
         headers: {
-          'Authorization': 'Bearer ' + COHERE_API_KEY,
-          'Content-Type': 'application/json'
-        }
+          Authorization: `Bearer ${COHERE_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
       }
     );
 
-    const reply = response.data.text;
-    res.json({ reply });
+    res.json({ reply: response.data.text });
   } catch (error) {
-    console.error('Cohere API error:', error.response?.data || error.message);
-    res.status(500).json({ reply: 'Something went wrong with Cohere API.' });
+    console.error('❗ API Error:', error.response?.data || error.message);
+    res.status(500).json({ reply: 'Something went wrong with Kutty AI.' });
   }
 });
 
-// ✅ Server Listening
-app.listen(31, () => {
-  console.log(`✅ Server running at http://koushikchatbot:${31}`);
-});
+// ✅ Start Server
+app.listen(31, () => console.log(`✅ Server running at http://koushikchatbot:${31}`));
