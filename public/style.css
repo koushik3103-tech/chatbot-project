@@ -166,3 +166,9 @@ body.dark .input-container {
     font-size: 0.9rem;
   }
 }
+#personality-select {
+  padding: 10px;
+  margin: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+}
