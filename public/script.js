@@ -46,3 +46,8 @@ document.getElementById('user-input').addEventListener('keydown', (e) => {
 document.getElementById('theme-toggle').addEventListener('click', () => {
   document.body.classList.toggle('dark');
 });
+document.getElementById('user-input').addEventListener('focus', () => {
+  setTimeout(() => {
+    document.getElementById('chat-box').scrollTop = document.getElementById('chat-box').scrollHeight;
+  }, 300);
+});
